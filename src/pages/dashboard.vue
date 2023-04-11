@@ -2,5 +2,5 @@
 
 </script>
 <template>
-    <h1>home</h1>
+    <h1>dashobard</h1>
 </template>

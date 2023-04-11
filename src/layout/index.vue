@@ -2,6 +2,7 @@
 import { reactive,ref } from 'vue';
 import logo from '@/assets/admin-logo.png';
 import { useRouter } from 'vue-router';
+
     let router = useRouter()
     let navState = reactive({
         drawer: true,
@@ -14,17 +15,38 @@ import { useRouter } from 'vue-router';
           { title: 'Users', icon: 'mdi-account-group-outline' },
         ],
     })
-
-    console.log(router);
 </script>
 <template>
     <header :class="{expend:navState.lock}">
         <!-- <nav></nav> -->
     </header>
     <aside>
-        
+        <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo"
+            :collapse="navState.lock"
+        >
+            <el-sub-menu v-for="(item, index) in $router.options.routes" :key="index" :index="item.path">
+                <template #title>
+                    <el-icon><location /></el-icon>
+                    <span>{{ item.meta?.name }}</span>
+                </template>
+            <el-menu-item-group>
+                <template #title><span>Group One</span></template>
+                <el-menu-item index="1-1">item one</el-menu-item>
+                <el-menu-item index="1-2">item two</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group title="Group Two">
+                <el-menu-item index="1-3">item three</el-menu-item>
+            </el-menu-item-group>
+            </el-sub-menu>
+            <el-menu-item index="2">
+                <el-icon><icon-menu /></el-icon>
+                <template #title>权限配置</template>
+            </el-menu-item>
+        </el-menu>
     </aside>
-    <article>
+    <article :class="{expend:navState.lock}">
         <router-view/>
     </article>
 </template>
@@ -33,7 +55,11 @@ article{
     margin-right: 116px;
     margin-top: 100px;
     background-color: lightsalmon;
+    &.expand{
+        margin-right: 300px;
+    }
 }
+
 header{
     position: fixed;
     top: 12px;
