@@ -6,6 +6,41 @@
   "description": "物流平台",
   "glyphs": [
     {
+      "icon_id": "34894452",
+      "name": "待发货",
+      "font_class": "a-ziyuan6",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "34894459",
+      "name": "待收货",
+      "font_class": "a-ziyuan7",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "34900160",
+      "name": "edit-rectangle",
+      "font_class": "edit-rectangle",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "34900193",
+      "name": "lock 01",
+      "font_class": "a-lock01",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "34900239",
+      "name": "search 02",
+      "font_class": "a-search02",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
       "icon_id": "1980226",
       "name": "group_fill",
       "font_class": "group_fill",

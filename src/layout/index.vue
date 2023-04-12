@@ -8,14 +8,6 @@ import { isElement } from 'lodash';
     let filterHiddenRoutes =  (routes:readonly RouteRecordRaw[]):RouteRecordRaw[] =>{
         return routes.filter(route=>!route.meta?.hidden)
     }
-    let isElementIcon = (meta:any): boolean => {
-        // 排除没有meta情况
-        if(!meta) return false
-        if(meta&&meta.icon){
-            return !!!/^#/.test(meta.icon)
-        }
-        return false
-    }
     onMounted(()=>{
         console.log(filterHiddenRoutes(router.options.routes))
     })
@@ -51,26 +43,23 @@ import { isElement } from 'lodash';
         <el-menu
             default-active="2"
             class="el-menu-vertical-demo"
-
             :collapse="navState.collapse"
         >
+            <div logo class="logo">
+                logo
+            </div>
             <template v-for="(item, index) in filterHiddenRoutes($router.options.routes)" :key="item.path" >
                 <el-sub-menu v-if="item.children" :index="item.path">
                     <template #title>
                         <el-icon>
-                            <svg  v-if="isElementIcon(item.meta)" icon aria-hidden="true">
-                                <use :xlink:href="item.meta?.icon"></use>
-                            </svg>
-                            <component v-else :is=""></component>
+                            <Icon-custom :font-size="20" :icon="item.meta?.icon"></Icon-custom>
                         </el-icon>
                         <span>{{ item.meta?.name }}</span>
                     </template>
                     <el-menu-item-group >
                         <el-menu-item v-for="(items, index) in item.children" :key="index" :index="items.path">
                             <el-icon>
-                                <svg icon aria-hidden="true">
-                                    <use :xlink:href="item.meta?.icon"></use>
-                                </svg>
+                                <Icon-custom :fontSize="20" :icon="items.meta?.icon"></Icon-custom>
                             </el-icon>
                             <template #title>{{ items.meta?.name }}</template>
                         </el-menu-item>
@@ -78,9 +67,7 @@ import { isElement } from 'lodash';
                 </el-sub-menu>
                 <el-menu-item v-else :index="item.path">
                     <el-icon>
-                        <svg icon aria-hidden="true">
-                            <use :xlink:href="item.meta?.icon"></use>
-                        </svg>
+                        <Icon-custom :fontSize="20" :icon="item.meta?.icon"></Icon-custom>
                     </el-icon>
                     <template #title>{{ item.meta?.name }}</template>
                 </el-menu-item>
@@ -91,7 +78,7 @@ import { isElement } from 'lodash';
         <router-view/>
     </article>
 </template>
-<style>
+<style lang="scss">
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 240px;
   min-height: 100%;
@@ -102,14 +89,22 @@ import { isElement } from 'lodash';
     border-right: 0px;
     
 }
-div[class$="toolbar"]{
-        
-    }
+html:root{
+    --el-menu-active-color: #fff;
+    --el-menu-bg-color: #2e2e2e;
+    --el-menu-text-color: #ffffff;
+    --active-color: #fff;
+    --el-menu-hover-bg-color: #787878;
+}
+
 </style>
 <style lang="scss">
 article{
     margin-left: 116px;
     margin-top: 124px;
+    transition-duration: 0.3s;
+    transition-property: margin;
+    transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
     &.expend{
         margin-left: 264px;
     }
@@ -122,7 +117,7 @@ header{
     left: 88px;
     right: 12px;
     transition-duration: 0.3s;
-    transition-property: box-shadow, transform, visibility, width, height, left, right, top, bottom;
+    transition-property: width, height, left, right;
     transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
     border-radius: 12px;
     background-color:#ffffffd6;

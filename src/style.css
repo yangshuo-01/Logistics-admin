@@ -1,13 +1,8 @@
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif, Robot;
   line-height: 1.5;
   font-weight: 400;
-
-  /* color-scheme: light dark; */
-  /* color: rgba(255, 255, 255, 0.87);
-  background-color: #242424; */
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -51,6 +46,13 @@ h1 {
 }
 [pointer]{
   cursor: pointer;
+}
+[logo]{
+  text-align: center;
+  padding: 12px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
 }
 svg[icon] {
   width: 1em;

@@ -28,7 +28,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
         component: Layout,
         meta: {
             name: '首页',
-            icon: '#icon-aichegujiabeifen5',
+            icon: 'HomeFilled',
         },
         children: [
             {
@@ -36,7 +36,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
                 name: 'dashboard',
                 meta: {
                     name: '仪表盘',
-                    icon: '#icon-aichegujiabeifen5',
+                    icon: 'Odometer',
                 },
                 component: () => import('../pages/dashboard.vue')
             }
@@ -48,14 +48,14 @@ const routes: Readonly<RouteRecordRaw[]> = [
         component: Layout,
         meta: {
             name: '数据中心',
-            icon: '',
+            icon: 'Menu',
         },
         children: [
             {
                 path: 'logistics',
                 meta: {
                     name: '物流管理',
-                    icon: '',
+                    icon: '#icon-a-ziyuan6',
                 },
                 component: () => import('../pages/dashboard.vue')
             },
@@ -63,7 +63,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
                 path: 'distribute',
                 meta: {
                     name: '分拣中心',
-                    icon: '',
+                    icon: '#icon-log',
                 },
                 component: () => import('../pages/dashboard.vue')
             },
@@ -75,7 +75,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
         component: Layout,
         meta: {
             name: '权限中心',
-            icon: '',
+            icon: 'Lock',
         },
         children: [
             {
