@@ -4,8 +4,15 @@ import App from './App.vue'
 import router from './router'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import * as SelfComponent from './components/index'
 
-createApp(App)
-.use(router)
+
+const app = createApp(App)
+app.component('')
+for (const [key, component] of Object.entries(Object.assign({},SelfComponent,ElementPlusIconsVue))) {
+    app.component(key, component)
+  }
+app.use(router)
 .use(ElementPlus)
 .mount('#app')

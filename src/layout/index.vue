@@ -2,10 +2,19 @@
 import { reactive,ref } from 'vue';
 import { RouteRecordRaw, useRouter } from 'vue-router';
 import { onMounted } from 'vue';
+import { isElement } from 'lodash';
     let router = useRouter()
     // 过滤hidden的路由
     let filterHiddenRoutes =  (routes:readonly RouteRecordRaw[]):RouteRecordRaw[] =>{
         return routes.filter(route=>!route.meta?.hidden)
+    }
+    let isElementIcon = (meta:any): boolean => {
+        // 排除没有meta情况
+        if(!meta) return false
+        if(meta&&meta.icon){
+            return !!!/^#/.test(meta.icon)
+        }
+        return false
     }
     onMounted(()=>{
         console.log(filterHiddenRoutes(router.options.routes))
@@ -24,21 +33,17 @@ import { onMounted } from 'vue';
 </script>
 <template>
     <header :class="{expend:!navState.collapse}">
-        <div class="header-left-toolbar">
-            <svg @click="navState.collapse = !navState.collapse"  class="icon" aria-hidden="true">
+        <div class="toolbar-item-group">
+            <svg pointer icon @click="navState.collapse = !navState.collapse" aria-hidden="true">
                 <use :xlink:href="navState.collapse?'#icon-icon-develop':'#icon-a-icon-packup'"></use>
             </svg>
         </div>            
-        <div class="header-right-toolbar">
-            <div class="toolbar-item">
-                <svg class="icon" aria-hidden="true">
-                    <use :xlink:href="navState.collapse?'#icon-icon-develop':'#icon-a-icon-packup'"></use>
-                </svg>
+        <div class="toolbar-item-group">
+            <div pointer class="toolbar-item">
+                <Bell icon />
             </div>
-            <div class="toolbar-item">
-                <svg class="icon" aria-hidden="true">
-                    <use :xlink:href="navState.collapse?'#icon-icon-develop':'#icon-a-icon-packup'"></use>
-                </svg>
+            <div pointer class="toolbar-item">
+                <UserFilled icon />
             </div>
         </div>
     </header>
@@ -53,16 +58,17 @@ import { onMounted } from 'vue';
                 <el-sub-menu v-if="item.children" :index="item.path">
                     <template #title>
                         <el-icon>
-                            <svg class="icon" aria-hidden="true">
+                            <svg  v-if="isElementIcon(item.meta)" icon aria-hidden="true">
                                 <use :xlink:href="item.meta?.icon"></use>
                             </svg>
+                            <component v-else :is=""></component>
                         </el-icon>
                         <span>{{ item.meta?.name }}</span>
                     </template>
                     <el-menu-item-group >
                         <el-menu-item v-for="(items, index) in item.children" :key="index" :index="items.path">
                             <el-icon>
-                                <svg class="icon" aria-hidden="true">
+                                <svg icon aria-hidden="true">
                                     <use :xlink:href="item.meta?.icon"></use>
                                 </svg>
                             </el-icon>
@@ -72,7 +78,7 @@ import { onMounted } from 'vue';
                 </el-sub-menu>
                 <el-menu-item v-else :index="item.path">
                     <el-icon>
-                        <svg class="icon" aria-hidden="true">
+                        <svg icon aria-hidden="true">
                             <use :xlink:href="item.meta?.icon"></use>
                         </svg>
                     </el-icon>
@@ -120,10 +126,10 @@ header{
     transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
     border-radius: 12px;
     background-color:#ffffffd6;
-    display: flex;
-    justify-content: space-between;
     padding: 0 24px;
     align-items: center;
+    display: flex;
+    justify-content: space-between;
     &.expend{
         left: 264px;
     }
@@ -131,11 +137,14 @@ header{
         width: 24px;
         height: 24px;
     }
-    div[class$="-toolbar"]{
-        display: flex;
-    }
-    .toolbar-item{
-    
+    .toolbar-item-group{
+        svg{
+            font-size: 24px;
+        }
+        .toolbar-item{
+            display: inline-block;
+            padding: 0 12px;
+        }
     }
 }
 aside{
