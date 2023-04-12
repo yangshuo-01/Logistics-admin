@@ -16,11 +16,6 @@ import { isElement } from 'lodash';
         rail: true,
         collapse: false,
         routes: router.options.routes,
-        items: [
-          { title: 'Home', icon: 'mdi-home-city' },
-          { title: 'My Account', icon: 'mdi-account' },
-          { title: 'Users', icon: 'mdi-account-group-outline' },
-        ],
     })
 </script>
 <template>
@@ -32,10 +27,13 @@ import { isElement } from 'lodash';
         </div>            
         <div class="toolbar-item-group">
             <div pointer class="toolbar-item">
-                <Bell icon />
+                <Icon-custom :size="28" icon="#icon-github-fill"></Icon-custom>
             </div>
             <div pointer class="toolbar-item">
-                <UserFilled icon />
+                <Icon-custom :size="28" icon="Bell"></Icon-custom>
+            </div>
+            <div pointer class="toolbar-item">
+                <Icon-custom :size="28" icon="#icon-user__easyico"></Icon-custom>
             </div>
         </div>
     </header>
@@ -52,14 +50,14 @@ import { isElement } from 'lodash';
                 <el-sub-menu v-if="item.children" :index="item.path">
                     <template #title>
                         <el-icon>
-                            <Icon-custom :font-size="20" :icon="item.meta?.icon"></Icon-custom>
+                            <Icon-custom :size="20" :icon="item.meta?.icon"></Icon-custom>
                         </el-icon>
                         <span>{{ item.meta?.name }}</span>
                     </template>
                     <el-menu-item-group >
                         <el-menu-item v-for="(items, index) in item.children" :key="index" :index="items.path">
                             <el-icon>
-                                <Icon-custom :fontSize="20" :icon="items.meta?.icon"></Icon-custom>
+                                <Icon-custom :size="20" :icon="items.meta?.icon"></Icon-custom>
                             </el-icon>
                             <template #title>{{ items.meta?.name }}</template>
                         </el-menu-item>
@@ -67,7 +65,7 @@ import { isElement } from 'lodash';
                 </el-sub-menu>
                 <el-menu-item v-else :index="item.path">
                     <el-icon>
-                        <Icon-custom :fontSize="20" :icon="item.meta?.icon"></Icon-custom>
+                        <Icon-custom :size="20" :icon="item.meta?.icon"></Icon-custom>
                     </el-icon>
                     <template #title>{{ item.meta?.name }}</template>
                 </el-menu-item>
@@ -101,7 +99,7 @@ html:root{
 <style lang="scss">
 article{
     margin-left: 116px;
-    margin-top: 124px;
+    margin-top: 104px;
     transition-duration: 0.3s;
     transition-property: margin;
     transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -113,7 +111,7 @@ article{
 header{
     position: fixed;
     top: 12px;
-    height: 100px;
+    height: 80px;
     left: 88px;
     right: 12px;
     transition-duration: 0.3s;
@@ -128,17 +126,12 @@ header{
     &.expend{
         left: 264px;
     }
-    .icon{
-        width: 24px;
-        height: 24px;
-    }
     .toolbar-item-group{
-        svg{
-            font-size: 24px;
-        }
         .toolbar-item{
             display: inline-block;
+            vertical-align: middle;
             padding: 0 12px;
+            vertical-align: middle;
         }
     }
 }

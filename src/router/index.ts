@@ -1,5 +1,4 @@
 import { RouteRecordRaw, Router, createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-import home from '../pages/home.vue'
 import Layout from '../layout/index.vue'
 import 'vue-router';
 

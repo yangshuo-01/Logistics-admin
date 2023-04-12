@@ -6,6 +6,27 @@
   "description": "物流平台",
   "glyphs": [
     {
+      "icon_id": "1973188",
+      "name": "男头像",
+      "font_class": "user__easyico",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "4937000",
+      "name": "github-fill",
+      "font_class": "github-fill",
+      "unicode": "e885",
+      "unicode_decimal": 59525
+    },
+    {
+      "icon_id": "8479685",
+      "name": "物流",
+      "font_class": "wuliu",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
       "icon_id": "34894452",
       "name": "待发货",
       "font_class": "a-ziyuan6",
