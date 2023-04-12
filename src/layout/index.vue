@@ -2,7 +2,7 @@
 import { reactive,ref } from 'vue';
 import { RouteRecordRaw, useRouter } from 'vue-router';
 import { onMounted } from 'vue';
-import { isElement } from 'lodash';
+
     let router = useRouter()
     // 过滤hidden的路由
     let filterHiddenRoutes =  (routes:readonly RouteRecordRaw[]):RouteRecordRaw[] =>{
