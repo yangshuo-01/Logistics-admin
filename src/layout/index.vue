@@ -1,22 +1,27 @@
 <script setup lang="ts">
 import { reactive,ref } from 'vue';
+import breadcrumbs from '../components/breadcrumbs.vue'
 import { RouteRecordRaw, useRouter } from 'vue-router';
 import { onMounted } from 'vue';
 
     let router = useRouter()
+    console.log(router.currentRoute.value.path);
+    
     // 过滤hidden的路由
     let filterHiddenRoutes =  (routes:readonly RouteRecordRaw[]):RouteRecordRaw[] =>{
         return routes.filter(route=>!route.meta?.hidden)
     }
     onMounted(()=>{
-        console.log(filterHiddenRoutes(router.options.routes))
+    console.log(filterHiddenRoutes(router.options.routes))
     })
+    let activeIndex = reactive({path : router.currentRoute.value.path}) 
     let navState = reactive({
         drawer: true,
         rail: true,
         collapse: false,
         routes: router.options.routes,
     })
+    
 </script>
 <template>
     <header :class="{expend:!navState.collapse}">
@@ -24,7 +29,9 @@ import { onMounted } from 'vue';
             <svg pointer icon @click="navState.collapse = !navState.collapse" aria-hidden="true">
                 <use :xlink:href="navState.collapse?'#icon-icon-develop':'#icon-a-icon-packup'"></use>
             </svg>
-        </div>            
+        </div>
+        <breadcrumbs/>     
+        <div class="flex-grow-1"></div>       
         <div class="toolbar-item-group">
             <div pointer class="toolbar-item">
                 <Icon-custom :size="28" icon="#icon-github-fill"></Icon-custom>
@@ -39,7 +46,8 @@ import { onMounted } from 'vue';
     </header>
     <aside>
         <el-menu
-            default-active="2"
+            router
+            :default-active="activeIndex.path"
             class="el-menu-vertical-demo"
             :collapse="navState.collapse"
         >
@@ -97,6 +105,9 @@ html:root{
 
 </style>
 <style lang="scss">
+.flex-grow-1 {
+    flex: 1;
+}
 article{
     margin-left: 116px;
     margin-top: 104px;

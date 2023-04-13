@@ -24,6 +24,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
     {
         path: '/dashboard',
         name: 'dashboard',
+        redirect: '/dashboard/panel',
         component: Layout,
         meta: {
             name: '首页',
@@ -31,7 +32,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
         },
         children: [
             {
-                path: '',
+                path: '/dashboard/panel',
                 name: 'dashboard',
                 meta: {
                     name: '仪表盘',

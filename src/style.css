@@ -7,6 +7,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  
+  --primary-color: rgb(9, 125, 241);
+  --self-shodow-1: 1px 1px;
+  --primary-background-image: linear-gradient(to right, #6b38fb, #bc78f2);
 }
 body,html{
   margin: 0;
