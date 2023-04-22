@@ -12,7 +12,7 @@ import { onMounted } from 'vue';
         return routes.filter(route=>!route.meta?.hidden)
     }
     onMounted(()=>{
-    console.log(filterHiddenRoutes(router.options.routes))
+
     })
     let activeIndex = reactive({path : router.currentRoute.value.path}) 
     let navState = reactive({
@@ -93,11 +93,11 @@ import { onMounted } from 'vue';
     height: 100%;
     border-radius: 12px;
     border-right: 0px;
-    
+    backdrop-filter: var(--blur-1);
 }
 html:root{
     --el-menu-active-color: #fff;
-    --el-menu-bg-color: #2e2e2e;
+    --el-menu-bg-color: #2e2e2eed;
     --el-menu-text-color: #ffffff;
     --active-color: #fff;
     --el-menu-hover-bg-color: #787878;
@@ -111,6 +111,7 @@ html:root{
 article{
     margin-left: 116px;
     margin-top: 104px;
+    margin-right: 12px;
     transition-duration: 0.3s;
     transition-property: margin;
     transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -120,6 +121,8 @@ article{
 }
 
 header{
+    overflow: hidden;
+    z-index: 2012;
     position: fixed;
     top: 12px;
     height: 80px;
@@ -129,13 +132,25 @@ header{
     transition-property: width, height, left, right;
     transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
     border-radius: 12px;
-    background-color:#ffffffd6;
     padding: 0 24px;
     align-items: center;
     display: flex;
     justify-content: space-between;
+    background-image: linear-gradient(90deg,#ffffff82 5%,rgba(255, 255, 255, 0.4) 20%,rgba(255, 255, 255, 0.4) 80%,#ffffff7c 100%);
     &.expend{
         left: 264px;
+    }
+    &::after{
+        content: '';
+        z-index: -1;
+        backdrop-filter: var(--blur-1);
+        background-color: #ffffff00;
+        box-shadow: inset 0 0 0 3000px rgba(255,255,255,0.3);
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
     }
     .toolbar-item-group{
         .toolbar-item{
@@ -147,6 +162,7 @@ header{
     }
 }
 aside{
+    z-index: 2012;
     position: fixed;
     top: 12px;
     bottom: 12px;

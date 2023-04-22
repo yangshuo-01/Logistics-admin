@@ -57,7 +57,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
                     name: '物流管理',
                     icon: '#icon-a-ziyuan6',
                 },
-                component: () => import('../pages/dashboard.vue')
+                component: () => import('../pages/data/logistics.vue')
             },
             {
                 path: 'distribute',
@@ -65,7 +65,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
                     name: '分拣中心',
                     icon: '#icon-log',
                 },
-                component: () => import('../pages/dashboard.vue')
+                component: () => import('../pages/data/distribute.vue')
             },
         ]
     },
@@ -84,7 +84,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
                     name: '用户',
                     icon: '#icon-group_fill',
                 },
-                component: () => import('../pages/dashboard.vue')
+                component: () => import('../pages/auth/user.vue')
             },
             {
                 path: 'api',
@@ -92,7 +92,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
                     name: '接口',
                     icon: '#icon-suo1',
                 },
-                component: () => import('../pages/dashboard.vue')
+                component: () => import('../pages/auth/api.vue')
             },
             {
                 path: 'role',
@@ -100,7 +100,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
                     name: '角色',
                     icon: '#icon-a-icon-changeadministrator',
                 },
-                component: () => import('../pages/dashboard.vue')
+                component: () => import('../pages/auth/user.vue')
             }
         ]
     },
