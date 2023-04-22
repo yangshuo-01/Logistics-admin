@@ -3,6 +3,17 @@ import { onMounted,ref } from 'vue';
 import { loadAMap } from '../utils/mapLoader';
 var map
 const container = ref(null)
+const loading = ref(true)
+const svg = `
+        <path class="path" d="
+          M 30 15
+          L 28 17
+          M 25.61 25.61
+          A 15 15, 0, 0, 1, 15 30
+          A 15 15, 0, 1, 1, 27.99 7.5
+          L 15 15
+        " style="stroke-width: 4px; fill: rgba(0, 0, 0, 0)"/>
+      `
 onMounted(()=>{
     loadAMap().then(()=>{        
         map = new window.AMap.Map(container.value,{
@@ -10,6 +21,7 @@ onMounted(()=>{
             viewMode: '3D',
             mapStyle: 'amap://styles/346f3d8f8cd538663e73786c90def87c',
         })
+        console.log(loading.value = false);
     })
 })
 </script>
@@ -18,7 +30,14 @@ onMounted(()=>{
     <Card>
         分拣中心分布
     </Card>
-    <div ref="container" class="dashboard">
+    <div 
+        v-loading="loading" 
+        element-loading-text="Loading..."
+        :element-loading-spinner="svg"
+        element-loading-svg-view-box="-10, -10, 50, 50"
+        element-loading-background="rgba(122, 122, 122, 1)"
+        ref="container" 
+        class="dashboard">
     </div>
 </template>
 <style lang="scss">

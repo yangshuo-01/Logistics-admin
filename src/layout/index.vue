@@ -51,8 +51,9 @@ import { onMounted } from 'vue';
             class="el-menu-vertical-demo"
             :collapse="navState.collapse"
         >
-            <div logo class="logo">
-                logo
+            <div logo class="menuLogo">
+                <Icon-custom :size="40" icon="#icon-wuliu2"></Icon-custom>
+                <div v-show="!navState.collapse" style="margin-left: 8px;">物流平台</div>
             </div>
             <template v-for="(item, index) in filterHiddenRoutes($router.options.routes)" :key="item.path" >
                 <el-sub-menu v-if="item.children" :index="item.path">
@@ -62,14 +63,12 @@ import { onMounted } from 'vue';
                         </el-icon>
                         <span>{{ item.meta?.name }}</span>
                     </template>
-                    <el-menu-item-group >
-                        <el-menu-item v-for="(items, index) in item.children" :key="index" :index="items.path">
-                            <el-icon>
-                                <Icon-custom :size="20" :icon="items.meta?.icon"></Icon-custom>
-                            </el-icon>
-                            <template #title>{{ items.meta?.name }}</template>
-                        </el-menu-item>
-                    </el-menu-item-group>
+                    <el-menu-item v-for="(items, index) in item.children" :key="index" :index="item.path+'/'+items.path">
+                        <el-icon>
+                            <Icon-custom :size="20" :icon="items.meta?.icon"></Icon-custom>
+                        </el-icon>
+                        <template #title>{{ items.meta?.name }}</template>
+                    </el-menu-item>
                 </el-sub-menu>
                 <el-menu-item v-else :index="item.path">
                     <el-icon>
@@ -108,8 +107,20 @@ html:root{
 .flex-grow-1 {
     flex: 1;
 }
+.menuLogo{
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    justify-content: center;
+    div{
+        white-space: nowrap; 
+    }
+}
 article{
-    margin-left: 116px;
+    margin-left: 90px;
     margin-top: 104px;
     margin-right: 12px;
     transition-duration: 0.3s;
@@ -126,7 +137,7 @@ header{
     position: fixed;
     top: 12px;
     height: 80px;
-    left: 88px;
+    left: 90px;
     right: 12px;
     transition-duration: 0.3s;
     transition-property: width, height, left, right;
@@ -136,16 +147,16 @@ header{
     align-items: center;
     display: flex;
     justify-content: space-between;
-    background-image: linear-gradient(90deg,#ffffff82 5%,rgba(255, 255, 255, 0.4) 20%,rgba(255, 255, 255, 0.4) 80%,#ffffff7c 100%);
     &.expend{
         left: 264px;
     }
     &::after{
         content: '';
         z-index: -1;
-        backdrop-filter: var(--blur-1);
-        background-color: #ffffff00;
-        box-shadow: inset 0 0 0 3000px rgba(255,255,255,0.3);
+        backdrop-filter: saturate(50%) blur(4px);
+        background-size: 4px 4px;
+        background-image: radial-gradient(transparent 2px,var(--bg-color) 1px);
+        background-color: #ffffff92;
         position: absolute;
         top: 0px;
         left: 0px;
