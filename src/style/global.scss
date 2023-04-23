@@ -1,0 +1,18 @@
+.el-table{
+    --el-table-text-color: var(--text-color) !important;
+    --el-table-header-text-color: var(--text-color) !important;
+    border-radius: var(--border-radius-1);
+    overflow: hidden;
+    .el-table__cell{
+        padding: 1em !important;
+    }
+}
+th{
+    font-weight: normal !important;
+}
+.el-menu li{
+    border-radius: var(--border-radius-1);
+}
+.el-menu ul{
+    padding:8px 12px;
+}

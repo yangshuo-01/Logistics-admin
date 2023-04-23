@@ -24,7 +24,7 @@ const routes: Readonly<RouteRecordRaw[]> = [
     {
         path: '/dashboard',
         name: 'dashboard',
-        redirect: '/dashboard/panel',
+        redirect: {name: 'map'},
         component: Layout,
         meta: {
             name: '首页',
@@ -32,8 +32,8 @@ const routes: Readonly<RouteRecordRaw[]> = [
         },
         children: [
             {
-                path: '/dashboard/panel',
-                name: 'dashboard',
+                path: 'map',
+                name: 'map',
                 meta: {
                     name: '仪表盘',
                     icon: 'Odometer',
@@ -53,19 +53,21 @@ const routes: Readonly<RouteRecordRaw[]> = [
         children: [
             {
                 path: 'logistics',
+                name: 'logistics',
                 meta: {
                     name: '物流管理',
                     icon: '#icon-a-ziyuan6',
                 },
-                component: () => import('../pages/dashboard.vue')
+                component: () => import('../pages/data/logistics.vue')
             },
             {
                 path: 'distribute',
+                name: 'distribute',
                 meta: {
                     name: '分拣中心',
                     icon: '#icon-log',
                 },
-                component: () => import('../pages/dashboard.vue')
+                component: () => import('../pages/data/distribute.vue')
             },
         ]
     },
@@ -80,39 +82,54 @@ const routes: Readonly<RouteRecordRaw[]> = [
         children: [
             {
                 path: 'user',
+                name: 'user',
                 meta: {
                     name: '用户',
                     icon: '#icon-group_fill',
                 },
-                component: () => import('../pages/dashboard.vue')
+                component: () => import('../pages/auth/user.vue')
             },
             {
                 path: 'api',
+                name: 'api',
                 meta: {
                     name: '接口',
                     icon: '#icon-suo1',
                 },
-                component: () => import('../pages/dashboard.vue')
+                component: () => import('../pages/auth/api.vue')
             },
             {
                 path: 'role',
+                name: 'role',
                 meta: {
                     name: '角色',
                     icon: '#icon-a-icon-changeadministrator',
                 },
-                component: () => import('../pages/dashboard.vue')
+                component: () => import('../pages/auth/user.vue')
             }
         ]
     },
     {
-        path: '/personal',
-        name: 'personal',
+        path: '/config',
+        name: 'config',
+        component: Layout,
         meta: {
-            name: '个人中心',
-            icon: '#icon-touxiang',
+            name: '设置',
+            icon: 'Tools',
         },
-        component: () => import('../pages/personal.vue')
+        children: [
+            {
+                path: 'personal',
+                name: 'personal',
+                meta: {
+                    name: '个人中心',
+                    icon: '#icon-touxiang',
+                },
+                component: () => import('../pages/personal.vue')
+            },
+        ]
     },
+
     {
         path: '/(.*)',
         name: 'NotFound',
