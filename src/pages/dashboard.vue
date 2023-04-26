@@ -21,7 +21,7 @@ onMounted(()=>{
             viewMode: '3D',
             mapStyle: 'amap://styles/346f3d8f8cd538663e73786c90def87c',
         })
-        console.log(loading.value = false);
+        loading.value = false
     })
 })
 </script>

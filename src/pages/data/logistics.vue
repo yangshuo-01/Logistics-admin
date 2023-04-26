@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inject, onMounted, ref } from 'vue';
-    let { $http }:any = inject('global')
+    // let { $http }:any = inject('global')
     let tableData = ref([
         {
             name: 'name',
@@ -9,10 +9,10 @@ import { inject, onMounted, ref } from 'vue';
         }
     ])
     onMounted(()=>{
-        $http.get('http://mock.js/Logistics/get').then((res: any)=>{
-            console.log(res);
-            tableData.value = res.data.datas
-        })
+        // $http.get('http://mock.js/Logistics/get').then((res: any)=>{
+        //     console.log(res);
+        //     tableData.value = res.data.datas
+        // })
     })
 </script>
 <template>

@@ -1,12 +1,11 @@
 import AMapLoader from '@amap/amap-jsapi-loader';
 
-
-window._AMapSecurityConfig = {
-    securityJsCode:'cff391566d12db88ac234841eb772ef1',
-}
-export async function loadAMap() {
+export function loadAMap() {
+    window._AMapSecurityConfig = {
+        securityJsCode:'f1d5ab04afbe6fedf3faa8fc5ead2963',
+    }
     return AMapLoader.load({
-            "key": "58b1aaf4fb48eda2cb8ecd388e6f0d42",   // 申请好的Web端开发者Key，首次调用 load 时必填
+            "key": "f9cf8a34333ee1a7b5f9b6a6014f0236",   // 申请好的Web端开发者Key，首次调用 load 时必填
             "version": "2.0",  // 指定要加载的 JS API 的版本，缺省时默认为 1.4.15
             "plugins": [],  // 需要使用的的插件列表，如比例尺'AMap.Scale'等
           })

@@ -16,9 +16,9 @@ app.component('')
 for (const [key, component] of Object.entries(Object.assign({},SelfComponent,ElementPlusIconsVue))) {
     app.component(key, component)
   }
-app.provide('global',{
-  $http
-})
+// app.provide('global',{
+//   $http
+// })
 
 app.use(router)
 .use(ElementPlus)
